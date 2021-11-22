@@ -1,7 +1,28 @@
-# Vue 3 + Vite
+# Vue 3  Boilerplate
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This repository contains a vue.js@3.2 boilerplate. The boilerplate has a build-in router system making it a single page applicaton using vite.
 
-## Recommended IDE Setup
+To build the project, use the following command after running the installation command;
+```
+npm run build
+```
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+## Installation
+
+Install the npm dependencies;
+
+```
+npm install
+```
+
+To run a development server (by default on localhost:3000), you can use vite's build-in test server using;
+```
+npm run dev
+```
+
+## Depencencies
+
+- [Vite 2.6](https://github.com/vitejs/vite)
+- [Vue.js 3.2](https://vuejs.org)
+- [Vue Router 4](https://router.vuejs.org)
+- [Vuex 4](https://vuex.vuejs.org)
