@@ -1,24 +1,38 @@
 # Vue 3  Boilerplate
 
-This repository contains a vue.js@3.2 boilerplate. The boilerplate has a build-in router system making it a single page applicaton using vite.
+This boilerplate contains the basic features needed to start on a fresh vuejs single page application.
 
-To build the project, use the following command after running the installation command;
-```
-npm run build
-```
+## Features
+
+- Single page application
+- Routing
+- <strike>Middleware</strike>
 
 ## Installation
 
-Install the npm dependencies;
+**Step 1. Install the dependencies**
 
 ```
 npm install
 ```
 
-To run a development server (by default on localhost:3000), you can use vite's build-in test server using;
+**Step 2. Run build command**
+
+This compiles the JavaScript and SCSS/LESS files for production.
+
+```
+npm run build
+```
+
+Or you can run a development server on http://localhost:3000 through vite's development server using the following command:
 ```
 npm run dev
 ```
+
+# Requirements
+
+- Node.js
+- NPM
 
 ## Depencencies
 
