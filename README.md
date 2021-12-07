@@ -40,3 +40,5 @@ npm run dev
 - [Vue.js 3.2](https://vuejs.org)
 - [Vue Router 4](https://router.vuejs.org)
 - [Vuex 4](https://vuex.vuejs.org)
+
+<div align=center>Made with tons of ☕ and ❤️ by <a href="https://github.com/naviisml">Navi</a></div>
