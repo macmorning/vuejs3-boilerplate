@@ -7,3 +7,4 @@ dist-ssr
 # Files
 *.DS_Store
 *.local
+package-lock.json
