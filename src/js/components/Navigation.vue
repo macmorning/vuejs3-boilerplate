@@ -10,6 +10,11 @@
 				Test
 			</router-link>
 		</li>
+		<li>
+			<router-link :to="{ name: 'example' }">
+				Example
+			</router-link>
+		</li>
 	</ul>
 </template>
 
