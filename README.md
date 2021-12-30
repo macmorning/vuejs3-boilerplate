@@ -6,7 +6,7 @@ This boilerplate contains the basic features needed to start on a fresh vuejs si
 
 - Routing
 	- <strike>Route Guards</strike>
-- <strike>Layouts</strike>
+- Layouts
 - <strike>Languages</strike>
 - <strike>Store</strike>
 
