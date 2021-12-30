@@ -1,13 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { app } from './app'
+import { nextTick } from 'vue'
 
-class Router
+export class Router
 {
 	/**
 	 * The constructor
 	 */
-	constructor(config)
+	constructor(app, config)
 	{
+		this.app = app
+		
 		this.resolveRoutes(
 			import.meta.globEager('./routes/*.js')
 		)
@@ -52,7 +54,7 @@ class Router
 		// and resolve the guards we wanna execute before
 		// visiting this page.
 
-		// TODO: this.router.$app.setLayout(to.meta.layout)
+		window.App.setLayout(to.meta.layout)
 
 		next()
 	}
@@ -66,7 +68,7 @@ class Router
 	 * @return  {void}
 	 */
 	async afterEach (to, from) {
-		//...
+		await nextTick()
 	}
 
 	/**
@@ -99,5 +101,3 @@ class Router
 		return this.router
 	}
 }
-
-export const router = new Router({})

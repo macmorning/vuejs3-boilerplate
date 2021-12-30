@@ -28,7 +28,7 @@
 		},
 
 		created () {
-			this.setLayout()
+			window.App = this
 		},
 
 		methods: {
