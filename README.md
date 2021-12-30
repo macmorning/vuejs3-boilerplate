@@ -4,9 +4,11 @@ This boilerplate contains the basic features needed to start on a fresh vuejs si
 
 ## Features
 
-- Single page application
 - Routing
-- <strike>Middleware</strike>
+	- <strike>Route Guards</strike>
+- <strike>Layouts</strike>
+- <strike>Languages</strike>
+- <strike>Store</strike>
 
 ## Installation
 
