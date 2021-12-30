@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { app } from './app'
 
 class Router
 {
@@ -11,6 +12,8 @@ class Router
 			import.meta.globEager('./routes/*.js')
 		)
 		this.createRouterInstance(config)
+
+		return this.router
 	}
 
 	/**

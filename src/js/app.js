@@ -5,8 +5,8 @@ import App from './components/App.vue'
 
 import './plugins'
 
-const app = createApp(App)
+export const app = createApp(App)
 
-app.use(router.getRouterInstance())
+app.use(router)
 
 app.mount('.wrapper')
