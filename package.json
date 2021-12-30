@@ -7,7 +7,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@naveldev/ui": "github:naveldev/ui",
+    "@naviisml/ui": "^2.0.1",
     "sass": "^1.45.0",
     "vue": "^3.2.16",
     "vue-router": "^4.0.12",
