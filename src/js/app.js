@@ -4,7 +4,7 @@ import { Language } from './language'
 
 import App from './components/App.vue'
 
-import './plugins'
+import '@naviisml/ui/src/scss/app.scss'
 
 export const app = createApp(App)
 
