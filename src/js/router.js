@@ -1,103 +1,77 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { nextTick } from 'vue'
 
-export class Router
-{
-	/**
-	 * The constructor
-	 */
-	constructor(app, config)
-	{
-		this.app = app
-		
-		this.resolveRoutes(
-			import.meta.globEager('./routes/*.js')
-		)
-		this.createRouterInstance(config)
+const routes = resolveRoutes(
+	import.meta.globEager('./routes/*.js')
+)
 
-		return this.router
-	}
+export const router = createRouterInstance()
 
-	/**
-	 * Create a new router instance
-	 *
-	 * @param   {Object}  config
-	 *
-	 * @return  {Router}
-	 */
-	createRouterInstance(config)
-	{
-		let routes = this.routes
+/**
+ * Create a new router instance
+ *
+ * @param   {Object}  config
+ *
+ * @return  {Router}
+ */
+function createRouterInstance() {
+	let instance
 
-		this.router = createRouter({
-			history: createWebHistory(),
-			routes
-		})
+	instance = createRouter({
+		history: createWebHistory(),
+		routes
+	})
 
-		this.router.beforeEach((to, from, next) => this.beforeEach(to, from, next))
-		this.router.afterEach((to, from) => this.afterEach(to, from))
+	instance.beforeEach(beforeEach)
+	instance.afterEach(afterEach)
 
-		return this.router
-	}
+	return instance
+}
 
-	/**
-	 * The beforeEach function for each route
-	 *
-	 * @param   {Object}  to
-	 * @param   {Object}  from
-	 * @param   {void}  next
-	 *
-	 * @return  {void}
-	 */
-	async beforeEach (to, from, next) {
-		// TODO: Look for the components (to.matched),
-		// and resolve the guards we wanna execute before
-		// visiting this page.
+/**
+ * Resolve the route files
+ *
+ * @param   {Object}  files
+ *
+ * @return  {Array}
+ */
+function resolveRoutes(files) {
+	let list = []
 
-		window.App.setLayout(to.meta.layout)
+	Object.keys(files).map(file =>
+		list.push(...files[file].default)
+	)
 
-		next()
-	}
+	return list
+}
 
-	/**
-	 * The afterEach function for each route
-	 *
-	 * @param   {Object}  to
-	 * @param   {Object}  from
-	 *
-	 * @return  {void}
-	 */
-	async afterEach (to, from) {
-		await nextTick()
-	}
+/**
+ * The beforeEach function for each route
+ *
+ * @param   {Object}  to
+ * @param   {Object}  from
+ * @param   {void}  next
+ *
+ * @return  {void}
+ */
+async function beforeEach (to, from, next) {
+	// TODO: Look for the components (to.matched),
+	// and resolve the guards we wanna execute before
+	// visiting this page.
 
-	/**
-	 * Resolve the route files
-	 *
-	 * @param   {Object}  files
-	 *
-	 * @return  {Array}
-	 */
-	resolveRoutes(files)
-	{
-		this.routes = this.routes ?? []
-		
-		for (var key in files) {
-			if (files.hasOwnProperty(key)) {
-				this.routes.push(...files[key].default)
-			}
-		}
+	window.App.setLayout(to.meta.layout)
 
-		return this.routes	
-	}
+	next()
+}
 
-	/**
-	 * Return the router instance
-	 *
-	 * @return  {Router}
-	 */
-	getRouterInstance()
-	{
-		return this.router
-	}
+/**
+ * The afterEach function for each route
+ *
+ * @param   {Object}  to
+ * @param   {Object}  from
+ *
+ * @return  {void}
+ */
+async function afterEach (to, from) {
+	await nextTick()
 }
