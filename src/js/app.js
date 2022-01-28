@@ -3,7 +3,7 @@ import { router } from './router'
 
 import App from './components/App.vue'
 
-import '@naviisml/ui/src/scss/app.scss'
+import '../scss/app.scss'
 
 export const app = createApp(App)
 
