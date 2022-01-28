@@ -1,7 +1,5 @@
 <template>
-	<div class="wrapper">
-		<component :is="layout" v-if="layout" />
-	</div>
+	<component :is="layout" v-if="layout" />
 </template>
 
 <script>
