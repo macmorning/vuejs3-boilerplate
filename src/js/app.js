@@ -1,13 +1,11 @@
 import { createApp } from 'vue'
-import { Router } from './router'
+import { router } from './router'
 
 import App from './components/App.vue'
 
-import './plugins'
+import '../scss/app.scss'
 
 export const app = createApp(App)
-
-export const router = new Router(app, {})
 
 app.use(router)
 
