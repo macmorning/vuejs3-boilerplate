@@ -5,10 +5,10 @@ This boilerplate contains the basic features needed to start on a fresh vuejs si
 ## Features
 
 - Routing
-	- <strike>Route Guards</strike>
+	- ~~Route Guards~~
 - Layouts
 - Languages
-- <strike>Store</strike>
+- Store
 
 ## Installation
 
