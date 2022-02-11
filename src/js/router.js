@@ -1,10 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { nextTick } from 'vue'
+import { getGuards, callGuards } from './guards'
 
+// the routes
 const routes = resolveRoutes(
 	import.meta.globEager('./routes/*.js')
 )
 
+// the router instance
 export const router = createRouterInstance()
 
 /**
@@ -29,23 +32,6 @@ function createRouterInstance() {
 }
 
 /**
- * Resolve the route files
- *
- * @param   {Object}  files
- *
- * @return  {Array}
- */
-function resolveRoutes(files) {
-	let list = []
-
-	Object.keys(files).map(file =>
-		list.push(...files[file].default)
-	)
-
-	return list
-}
-
-/**
  * The beforeEach function for each route
  *
  * @param   {Object}  to
@@ -54,14 +40,35 @@ function resolveRoutes(files) {
  *
  * @return  {void}
  */
-async function beforeEach (to, from, next) {
-	// TODO: Look for the components (to.matched),
-	// and resolve the guards we wanna execute before
-	// visiting this page.
+ async function beforeEach (to, from, next) {
+	let components = []
 
-	window.App.setLayout(to.meta.layout)
+	try {
+		// Get the matched components and resolve them.
+		components = await resolveComponents(
+			to.matched
+		)
+	} catch (error) {
+		if (/^Loading( CSS)? chunk (\d)+ failed\./.test(error.message)) {
+			window.location.reload(true)
+			return
+		}
+	}
 
-	next()
+	if (components.length === 0) {
+		return next()
+	}
+
+	const routeGuards = getGuards(components)
+
+	callGuards(routeGuards, to, from, (...args) => {
+		// Set the application layout only if "next()" was called with no args.
+		if (args.length === 0) {
+			window.App.setLayout(components[0].layout || '')
+		}
+
+		next(...args)
+	})
 }
 
 /**
@@ -74,4 +81,34 @@ async function beforeEach (to, from, next) {
  */
 async function afterEach (to, from) {
 	await nextTick()
+}
+
+/**
+ * Resolve async components.
+ *
+ * @param  {Array} components
+ * @return {Array}
+ */
+ function resolveComponents (components) {
+	return Promise.all(components.map(component => {
+		return typeof component === 'function' ? component() : component
+	}))
+}
+
+/**
+ * Resolve the route files
+ *
+ * @param   {Object}  files
+ *
+ * @return  {Array}
+ */
+function resolveRoutes(files) {
+	let list = []
+
+	Object.keys(files).map(file => [file.replace(/(^.\/)|(\.js$)/g, ''), files[file].default])
+		.reduce((routes, [name, router]) => {
+			list.push(...router)
+		}, {})
+
+	return list
 }
