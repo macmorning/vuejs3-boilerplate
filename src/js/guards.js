@@ -1,5 +1,5 @@
 // the global guards
-const globalGuards = ['locale']
+const globalGuards = ['locale', 'check-auth']
 
 // the guards
 const guards = resolveGuards(

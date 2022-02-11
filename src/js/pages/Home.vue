@@ -8,7 +8,6 @@
 	export default {
 		name: 'Home',
 		layout: 'stylesheet',
-		guards: ['test'],
 
 		components: {
 			HelloWorld

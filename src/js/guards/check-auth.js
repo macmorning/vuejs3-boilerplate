@@ -7,6 +7,5 @@ export default async (to, from, next) => {
 		} catch (e) { }
 	}
 
-	console.log('check-user')
 	next()
 }
