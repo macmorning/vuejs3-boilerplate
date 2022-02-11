@@ -3,7 +3,6 @@ import { createStore } from 'vuex'
 const modules = resolveStore(
 	import.meta.globEager('./store/*.js')
 )
-console.log(modules)
 
 export const store = createStore({
 	modules: modules
