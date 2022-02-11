@@ -21,3 +21,5 @@ export const actions = {
 		commit("SET_LANGUAGE", payload)
 	},
 }
+
+export const namespaced = true

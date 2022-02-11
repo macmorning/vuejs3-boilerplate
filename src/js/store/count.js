@@ -29,3 +29,5 @@ export const actions = {
 		console.log("customCount", state.count)
 	},
 }
+
+export const namespaced = true

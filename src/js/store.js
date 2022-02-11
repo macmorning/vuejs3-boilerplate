@@ -1,18 +1,24 @@
 import { createStore } from 'vuex'
 
 const modules = resolveStore(
-	require.context('./store/', false, /.*\.js$/)
+	import.meta.globEager('./store/*.js')
 )
+console.log(modules)
 
 export const store = createStore({
 	modules: modules
 })
 
-function resolveStore(requireContext) {
-	return requireContext.keys().map(file =>
-		[file.replace(/(^.\/)|(\.js$)/g, ''), requireContext(file)]
-	)
-	.reduce((list, [name, guard]) => (
-		{ ...list, [name]: guard }
-	), {})
+/**
+ * Resolve the middleware
+ *
+ * @param   {Object}  files
+ *
+ * @return  {Array}
+ */
+function resolveStore(files) {
+	return Object.keys(files).map(file => [file.replace(/(.+)\/([^\/]+)\/|(^.\/)|(\.js$)/g, ''), files[file]])
+		.reduce((modules, [name, module]) => {
+			return { ...modules, [name]: module }
+		}, {})
 }
