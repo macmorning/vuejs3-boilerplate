@@ -64,7 +64,7 @@ function createRouterInstance() {
 	callGuards(routeGuards, to, from, (...args) => {
 		// Set the application layout only if "next()" was called with no args.
 		if (args.length === 0) {
-			window.App.setLayout(components[0].layout || '')
+			window.App.setLayout(to.matched[0].components.default['layout'] || '')
 		}
 
 		next(...args)
