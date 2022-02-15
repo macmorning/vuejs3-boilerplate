@@ -7,14 +7,9 @@
 
 	export default {
 		name: 'Home',
-		layout: 'stylesheet',
 
 		components: {
 			HelloWorld
 		},
-
-		created () {
-			this.$store.dispatch('count/countUp')
-		}
 	}
 </script>
