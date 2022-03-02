@@ -20,10 +20,26 @@ export const mutations = {
 
 // actions
 export const actions = {
+	/**
+	 * Count +1
+	 *
+	 * @param   {object}  commit
+	 *
+	 * @return  {null}
+	 */
 	countUp ({ commit }) {
 		commit("COUNT_UP")
 		console.log("countUp", state.count)
 	},
+	/**
+	 * Set the count to a specific count
+	 *
+	 * @param   {object}  commit
+	 * @param   {object}  dispatch
+	 * @param   {object}  payload
+	 *
+	 * @return  {null}
+	 */
 	customCount ({ commit, dispatch }, payload) {
 		commit("COUNT_SET", payload)
 		console.log("customCount", state.count)

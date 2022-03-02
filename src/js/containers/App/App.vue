@@ -7,7 +7,7 @@
 
 	// Load layout components dynamically.
 	const layouts = getLayouts(
-		import.meta.globEager('../layouts/*.vue')
+		import.meta.globEager('../../layouts/*/*.vue')
 	)
 
 	export default {
@@ -59,7 +59,7 @@
 			if (files.hasOwnProperty(key)) {
 				let file = files[key]
 				
-				layouts[key.replace(/(^..\/layouts\/)|(\.vue$)/g, '')] = shallowRef(file.default)
+				layouts[key.replace(/(.*\/)|(\.vue$)/g, '')] = shallowRef(file.default)
 			}
 		}
 

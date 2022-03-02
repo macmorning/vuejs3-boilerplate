@@ -1,7 +1,7 @@
 import { createStore } from 'vuex'
 
 const modules = resolveStore(
-	import.meta.globEager('./store/*.js')
+	import.meta.globEager('../store/*.js')
 )
 
 export const store = createStore({

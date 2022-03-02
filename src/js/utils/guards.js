@@ -1,9 +1,9 @@
 // the global guards
-const globalGuards = ['locale', 'check-auth']
+const globalGuards = ['check-auth']
 
 // the guards
 const guards = resolveGuards(
-	import.meta.globEager('./guards/*.js')
+	import.meta.globEager('../guards/*.js')
 )
 
 /**

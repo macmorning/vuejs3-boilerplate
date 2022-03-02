@@ -1,8 +1,8 @@
 import { createApp } from 'vue'
-import { router } from './router'
-import { store } from './store'
+import { router } from './utils/router'
+import { store } from './utils/store'
 
-import App from './components/App.vue'
+import App from './containers/App/App.vue'
 
 import '../scss/app.scss'
 

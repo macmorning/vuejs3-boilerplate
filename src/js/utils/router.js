@@ -4,7 +4,7 @@ import { getGuards, callGuards } from './guards'
 
 // the routes
 const routes = resolveRoutes(
-	import.meta.globEager('./routes/*.js')
+	import.meta.globEager('../routes/*.js')
 )
 
 // the router instance
